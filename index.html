@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saavan Patel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:        #60A5FA;
+      --blue-dark:   #3B82F6;
+      --blue-glow:   rgba(96, 165, 250, 0.12);
+      --blue-border: rgba(96, 165, 250, 0.25);
+      --amber:       #F59E0B;
+      --amber-glow:  rgba(245, 158, 11, 0.12);
+      --text:        #F1F5F9;
+      --text-mid:    #94A3B8;
+      --text-light:  #64748B;
+      --border:      rgba(255,255,255,0.07);
+      --border-hover:rgba(96, 165, 250, 0.3);
+      --bg:          #0C1525;
+      --surface:     #111D2E;
+      --surface-2:   #162336;
+      --radius:      12px;
+      --radius-sm:   8px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(12, 21, 37, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--blue);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue); }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 24px 64px;
+      display: flex;
+      align-items: center;
+      gap: 64px;
+    }
+    .hero-text { flex: 1; }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--blue-glow);
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 24px;
+      border: 1px solid var(--blue-border);
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .hero h1 span { color: var(--blue); }
+    .hero-tagline {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 14px;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+    .hero-wife-note {
+      font-size: 15px;
+      color: var(--text-mid);
+      margin-top: 20px;
+      max-width: 480px;
+      line-height: 1.6;
+      font-style: italic;
+    }
+    .hero-powered {
+      font-size: 14px;
+      color: var(--text-light);
+      margin-bottom: 32px;
+      max-width: 520px;
+      line-height: 1.6;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-bottom: 8px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: var(--radius-sm);
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: var(--blue-dark);
+      color: white;
+      box-shadow: 0 0 20px rgba(96, 165, 250, 0.2);
+    }
+    .btn-primary:hover { background: var(--amber); color: #0C1525; box-shadow: 0 0 28px rgba(245, 158, 11, 0.35); transform: translateY(-1px); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--blue);
+      border: 1px solid var(--blue-border);
+    }
+    .btn-secondary:hover { background: var(--amber-glow); color: #0C1525; border-color: var(--amber); background: var(--amber); transform: translateY(-1px); }
+
+    .hero-avatar {
+      flex-shrink: 0;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 40% 40%, #1a3a6e 0%, #0C1525 100%);
+      border: 2px solid var(--blue-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 72px;
+      box-shadow: 0 0 60px rgba(96, 165, 250, 0.12), 0 8px 32px rgba(0,0,0,0.4);
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 72px 0; }
+    section:nth-child(even) { background: var(--surface); }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .section-header { margin-bottom: 48px; }
+    .section-label {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+    .section-subtitle {
+      margin-top: 12px;
+      font-size: 17px;
+      color: var(--text-mid);
+      max-width: 560px;
+    }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--surface-2);
+      border-radius: var(--radius);
+      padding: 28px;
+      border: 1px solid var(--border);
+      transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    .card:hover {
+      border-color: var(--blue-border);
+      box-shadow: 0 0 24px var(--blue-glow);
+      transform: translateY(-2px);
+    }
+    .card-icon { font-size: 36px; margin-bottom: 16px; }
+    .card-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .card-body { font-size: 15px; color: var(--text-mid); line-height: 1.6; }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 24px;
+    }
+
+    /* ── RESEARCH ── */
+    .research-card {
+      background: var(--surface-2);
+      border-radius: var(--radius);
+      padding: 32px;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .research-card:hover {
+      border-color: var(--blue-border);
+      box-shadow: 0 0 24px var(--blue-glow);
+    }
+    .chip-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .chip {
+      background: var(--blue-glow);
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--blue-border);
+    }
+    .chip.gray {
+      background: rgba(255,255,255,0.05);
+      color: var(--text-mid);
+      border-color: var(--border);
+    }
+
+    /* ── STATS ── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .stat-box {
+      background: var(--blue-glow);
+      border: 1px solid var(--blue-border);
+      border-radius: var(--radius);
+      padding: 20px;
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--blue);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-size: 13px;
+      color: var(--text-mid);
+      font-weight: 500;
+    }
+
+    /* ── ATHLETICS ── */
+    .athletics-card {
+      background: var(--surface-2);
+      border-radius: var(--radius);
+      padding: 32px 36px;
+      border: 1px solid var(--border);
+    }
+    .athletics-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      margin-bottom: 32px;
+    }
+    .athletics-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    .athletics-icon {
+      font-size: 28px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .athletics-list strong {
+      display: block;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .athletics-list p {
+      font-size: 15px;
+      color: var(--text-mid);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .strava-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--blue);
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      width: 100%;
+      transition: color 0.2s;
+    }
+    .strava-link:hover { color: var(--amber); }
+
+    /* ── COFFEE ── */
+    .coffee-card {
+      background: linear-gradient(135deg, #071c2c 0%, #0d2a3a 60%, #0a1e2e 100%);
+      border-radius: var(--radius);
+      padding: 40px;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(96, 165, 250, 0.18);
+      box-shadow: 0 0 40px rgba(96, 165, 250, 0.06);
+    }
+    .coffee-card::before {
+      content: '☕';
+      position: absolute;
+      right: -20px;
+      top: -20px;
+      font-size: 160px;
+      opacity: 0.06;
+    }
+    .coffee-card h3 { font-size: 24px; font-weight: 700; margin-bottom: 16px; }
+    .coffee-card p { font-size: 16px; color: #94B8D4; line-height: 1.7; max-width: 480px; }
+    .coffee-stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+    .coffee-stat { text-align: left; }
+    .coffee-stat-num {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--amber);
+      line-height: 1;
+    }
+    .coffee-stat-label {
+      font-size: 13px;
+      color: #6A94B4;
+      margin-top: 2px;
+    }
+
+    /* ── DAD JOKES ── */
+    .joke-box {
+      background: var(--surface-2);
+      border: 1px solid var(--blue-border);
+      border-radius: var(--radius);
+      padding: 40px;
+      text-align: center;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      box-shadow: 0 0 32px var(--blue-glow);
+    }
+    .joke-emoji { font-size: 40px; }
+    .joke-text {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.5;
+      max-width: 600px;
+      min-height: 60px;
+      transition: opacity 0.3s;
+    }
+    .joke-punchline {
+      font-size: 17px;
+      color: var(--amber);
+      font-weight: 700;
+      min-height: 28px;
+      transition: opacity 0.3s;
+    }
+    .joke-btn {
+      background: var(--blue-dark);
+      color: white;
+      padding: 12px 28px;
+      border-radius: var(--radius-sm);
+      font-size: 15px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .joke-btn:hover { background: var(--blue); transform: translateY(-1px); box-shadow: 0 0 16px rgba(96,165,250,0.3); }
+    .joke-reveal-btn {
+      background: transparent;
+      color: var(--text-mid);
+      border: 1px solid var(--border);
+      padding: 8px 20px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .joke-reveal-btn:hover { border-color: var(--blue-border); color: var(--blue); }
+
+    /* ── MUSIC VIBES ── */
+    .vibe-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 8px 18px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-mid);
+      transition: all 0.2s;
+    }
+    .vibe-tag:hover { border-color: var(--blue-border); color: var(--blue); background: var(--blue-glow); transform: scale(1.03); }
+    .vibe-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #080F1A;
+      border-top: 1px solid var(--border);
+      color: var(--text-light);
+      padding: 40px 24px;
+      text-align: center;
+    }
+    footer .footer-inner { max-width: 1100px; margin: 0 auto; }
+    footer .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    footer a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    footer a:hover { color: var(--blue); }
+    footer .footer-copy { font-size: 13px; color: var(--text-light); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 48px 24px 40px;
+        gap: 32px;
+      }
+      .hero-avatar { width: 160px; height: 160px; font-size: 52px; }
+      .hero-tagline { margin: 0 auto 32px; }
+      .hero-actions { justify-content: center; }
+      .nav-links { display: none; }
+      .coffee-card { padding: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">SP</a>
+      <ul class="nav-links">
+        <li><a href="#research">Research</a></li>
+        <li><a href="#athletics">Athletics</a></li>
+        <li><a href="#coffee">Coffee</a></li>
+        <li><a href="#jokes">Dad Jokes</a></li>
+        <li><a href="#about" style="color:var(--amber)">Made by his wife ✦</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-text">
+      <div class="hero-badge">
+        <span>🐻</span> UC Berkeley EECS
+      </div>
+      <h1>Saavan <span>Patel</span></h1>
+      <p class="hero-tagline">Hardware <span style="color:var(--amber)">×</span> AI</p>
+      <p class="hero-powered">
+        Powered by caffeine, endorphins, and questionable puns.
+      </p>
+      <div class="hero-actions">
+        <a href="https://scholar.google.com/citations?user=MRO0P4UAAAAJ&hl=en"
+           target="_blank" rel="noopener" class="btn btn-primary">
+          🎓 Google Scholar
+        </a>
+        <a href="https://www.linkedin.com/in/saavan-patel-03992178/"
+           target="_blank" rel="noopener" class="btn btn-primary">
+          💼 LinkedIn
+        </a>
+      </div>
+      <p class="hero-wife-note">Hi, I'm Divya — his wife. I made this because if I left it up to him, it still wouldn't exist. You're welcome, internet.</p>
+    </div>
+    <div class="hero-avatar">☕</div>
+  </div>
+
+  <!-- RESEARCH -->
+  <section id="research">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">The Nerd Stuff</span>
+        <h2 class="section-title">AI Hardware Research</h2>
+        <p class="section-subtitle">
+          He builds the hardware that makes AI fast. I don't fully understand it,
+          but he gets very animated explaining it, which I find endearing.
+        </p>
+      </div>
+      <div class="grid-2">
+        <div class="research-card">
+          <div style="font-size:36px; margin-bottom:16px;">⚡</div>
+          <h3 style="font-size:20px; font-weight:700; margin-bottom:12px;">Hardware for AI</h3>
+          <p style="font-size:15px; color:var(--text-mid); line-height:1.7;">
+            Saavan has his PhD in EECS from UC Berkeley and has spent years working
+            at the intersection of computer architecture and machine learning.
+            He's helping build the physical foundation that AI runs on —
+            faster chips, smarter systems, fewer excuses for slow models.
+          </p>
+          <div class="chip-list">
+            <span class="chip">AI Accelerators</span>
+            <span class="chip">Computer Architecture</span>
+            <span class="chip">VLSI</span>
+            <span class="chip">ML Systems</span>
+          </div>
+        </div>
+        <div class="research-card">
+          <div style="font-size:36px; margin-bottom:16px;">🐻</div>
+          <h3 style="font-size:20px; font-weight:700; margin-bottom:12px;">@ UC Berkeley</h3>
+          <p style="font-size:15px; color:var(--text-mid); line-height:1.7;">
+            Berkeley gave him a PhD and a deep appreciation for good espresso.
+            I'd say it changed him, but he was already exactly this person
+            before he got there. The degree just made it official.
+          </p>
+          <div class="chip-list">
+            <span class="chip gray">EECS PhD</span>
+            <span class="chip gray">Berkeley, CA</span>
+            <span class="chip gray">Go Bears 🐻</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ATHLETICS -->
+  <section id="athletics">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Beyond the Lab</span>
+        <h2 class="section-title">The Man Never Stops Moving 🏅</h2>
+        <p class="section-subtitle">
+          When I first met him I thought it was a phase. Reader, it was not a phase.
+        </p>
+      </div>
+      <div class="athletics-card">
+        <ul class="athletics-list">
+          <li>
+            <span class="athletics-icon">🏃</span>
+            <div>
+              <strong>Marathon Runner</strong>
+              <p>26.2 miles at a time, on purpose, for fun. He's done this multiple times and somehow still signs up for more.</p>
+            </div>
+          </li>
+          <li>
+            <span class="athletics-icon">🚴</span>
+            <div>
+              <strong>Cyclist</strong>
+              <p>Two wheels, open roads, strong opinions about saddle height. I support him even when I don't fully follow the gear talk.</p>
+            </div>
+          </li>
+          <li>
+            <span class="athletics-icon">🏊</span>
+            <div>
+              <strong>Swimmer (in training)</strong>
+              <p>As if marathons weren't enough, he decided to add "also breathe correctly while moving fast through water" to his life.</p>
+            </div>
+          </li>
+        </ul>
+        <a href="https://www.strava.com/athletes/22665480" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top: 8px; display: inline-flex;">
+          🏅 Saavan's Strava
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- COFFEE -->
+  <section id="coffee">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">His Other Love</span>
+        <h2 class="section-title">Extremely Serious About Coffee ☕</h2>
+        <p class="section-subtitle">
+          I knew what I was signing up for. The espresso machine has a permanent spot on the counter.
+        </p>
+      </div>
+      <div class="coffee-card">
+        <h3>A Love Letter to Espresso</h3>
+        <p>
+          Before he says good morning to me, he says good morning to the coffee.
+          I've made my peace with it. His relationship with a well-pulled shot
+          is honestly something I admire — the man has standards, and he will
+          not compromise them for anyone.
+        </p>
+        <div class="coffee-stats">
+          <div class="coffee-stat">
+            <div class="coffee-stat-num">∞</div>
+            <div class="coffee-stat-label">cups consumed</div>
+          </div>
+          <div class="coffee-stat">
+            <div class="coffee-stat-num">0</div>
+            <div class="coffee-stat-label">bad cups accepted</div>
+          </div>
+          <div class="coffee-stat">
+            <div class="coffee-stat-num">☕</div>
+            <div class="coffee-stat-label">first thought every morning</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DAD JOKES -->
+  <section id="jokes">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Certified Dad Energy</span>
+        <h2 class="section-title">The Joke Corner 😂</h2>
+        <p class="section-subtitle">
+          Fair warning: he is SO proud of every single one of these.
+          I have heard them all. Multiple times. I still married him.
+        </p>
+      </div>
+      <div class="joke-box">
+        <div class="joke-emoji">🤔</div>
+        <div class="joke-text" id="jokeSetup">Why don't scientists trust atoms?</div>
+        <div class="joke-punchline" id="jokePunchline" style="opacity:0;"></div>
+        <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
+          <button class="joke-reveal-btn" id="revealBtn" onclick="revealPunchline()">Reveal punchline 👀</button>
+          <button class="joke-btn" onclick="nextJoke()">Next joke →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="https://scholar.google.com/citations?user=MRO0P4UAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+        <a href="https://www.linkedin.com/in/saavan-patel-03992178/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:saavan@berkeley.edu">Email</a>
+      </div>
+      <p class="footer-copy">
+        Saavan Patel · EECS PhD · UC Berkeley<br/>
+        <span style="font-size:12px; margin-top:8px; display:inline-block; color: var(--amber);">
+          Made with love (and mild bewilderment) by his wife, Divya 💙
+        </span>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    const jokes = [
+      {
+        setup: "Why don't scientists trust atoms?",
+        punchline: "Because they make up everything. 💥"
+      },
+      {
+        setup: "Why did the GPU go to therapy?",
+        punchline: "It had too many layers to process. 🧠"
+      },
+      {
+        setup: "I tried to run a marathon but hit the wall at mile 20.",
+        punchline: "Guess my training data wasn't large enough. 🏃"
+      },
+      {
+        setup: "My coffee grinder broke this morning.",
+        punchline: "I'm experiencing a total system grind-down. ☕"
+      },
+      {
+        setup: "Why did the cyclist get a PhD?",
+        punchline: "He wanted to go the extra cycle. 🚴"
+      },
+      {
+        setup: "My advisor told me to think outside the box.",
+        punchline: "I told him the box has terrible memory bandwidth. 📦"
+      },
+      {
+        setup: "How do you know someone runs marathons?",
+        punchline: "Don't worry — they'll tell you. Twice. At mile 22. 🗣️"
+      },
+      {
+        setup: "Why do runners make bad programmers?",
+        punchline: "They always try to run before they compile. 💻"
+      },
+      {
+        setup: "I asked my espresso machine if it was feeling okay.",
+        punchline: "It said it was just a little pressed. ☕"
+      },
+      {
+        setup: "Why did the computer go swimming?",
+        punchline: "It wanted to improve its net speed. 🏊"
+      }
+    ];
+
+    let current = 0;
+    let punchlineShown = false;
+
+    function updateJoke() {
+      const setupEl = document.getElementById('jokeSetup');
+      const punchlineEl = document.getElementById('jokePunchline');
+      const revealBtn = document.getElementById('revealBtn');
+
+      setupEl.style.opacity = '0';
+      punchlineEl.style.opacity = '0';
+
+      setTimeout(() => {
+        setupEl.textContent = jokes[current].setup;
+        punchlineEl.textContent = jokes[current].punchline;
+        punchlineEl.style.opacity = '0';
+        setupEl.style.opacity = '1';
+        revealBtn.style.display = 'inline-block';
+        punchlineShown = false;
+      }, 300);
+    }
+
+    function revealPunchline() {
+      const punchlineEl = document.getElementById('jokePunchline');
+      const revealBtn = document.getElementById('revealBtn');
+      punchlineEl.style.opacity = '1';
+      revealBtn.style.display = 'none';
+      punchlineShown = true;
+    }
+
+    function nextJoke() {
+      current = (current + 1) % jokes.length;
+      updateJoke();
+    }
+
+    // init
+    updateJoke();
+  </script>
+</body>
+</html>
