@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Saavan Patel</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='85'>🚴</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -82,11 +83,12 @@
       max-width: 1100px;
       margin: 0 auto;
       padding: 80px 24px 64px;
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       align-items: center;
-      gap: 64px;
+      gap: 48px;
     }
-    .hero-text { flex: 1; }
+    .hero-text { min-width: 0; }
     .hero-badge {
       display: inline-flex;
       align-items: center;
@@ -164,13 +166,14 @@
     .btn-secondary:hover { background: var(--amber-glow); color: #0C1525; border-color: var(--amber); background: var(--amber); transform: translateY(-1px); }
 
     .hero-avatar {
-      flex-shrink: 0;
-      width: 300px;
-      height: 380px;
+      width: 100%;
+      max-width: 340px;
+      height: 420px;
       border-radius: 16px;
       border: 2px solid var(--blue-border);
       box-shadow: 0 0 60px rgba(96, 165, 250, 0.12), 0 8px 32px rgba(0,0,0,0.4);
       overflow: hidden;
+      justify-self: center;
     }
     .hero-avatar img {
       width: 100%;
@@ -497,16 +500,27 @@
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       .hero {
-        flex-direction: column-reverse;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
         text-align: center;
-        padding: 48px 24px 40px;
+        padding: 40px 24px 32px;
         gap: 32px;
       }
-      .hero-avatar { width: 160px; height: 160px; font-size: 52px; }
-      .hero-tagline { margin: 0 auto 32px; }
+      .hero-text { order: 2; }
+      .hero-avatar {
+        order: 1;
+        max-width: 240px;
+        height: 280px;
+        justify-self: center;
+      }
+      .hero-tagline { font-size: 1.6rem; }
+      .hero-wife-note { margin: 20px auto 0; }
+      .hero-powered { margin-left: auto; margin-right: auto; }
       .hero-actions { justify-content: center; }
       .nav-links { display: none; }
       .coffee-card { padding: 28px; }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
