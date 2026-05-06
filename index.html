@@ -168,13 +168,14 @@
       width: 240px;
       height: 240px;
       border-radius: 50%;
-      background: radial-gradient(circle at 40% 40%, #1a3a6e 0%, #0C1525 100%);
       border: 2px solid var(--blue-border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 72px;
       box-shadow: 0 0 60px rgba(96, 165, 250, 0.12), 0 8px 32px rgba(0,0,0,0.4);
+      overflow: hidden;
+    }
+    .hero-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     /* ── SECTIONS ── */
@@ -547,7 +548,7 @@
       </div>
       <p class="hero-wife-note">Hi, I'm Divya — his wife. I made this because if I left it up to him, it still wouldn't exist. You're welcome, internet.</p>
     </div>
-    <div class="hero-avatar">☕</div>
+    <div class="hero-avatar"><img src="public/saavan.jpeg" alt="Saavan Patel" /></div>
   </div>
 
   <!-- RESEARCH -->
